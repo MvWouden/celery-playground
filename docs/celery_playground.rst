@@ -1,6 +1,14 @@
 celery\_playground package
 ==========================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   celery_playground.getting_started
+
 Submodules
 ----------
 

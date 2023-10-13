@@ -2,4 +2,5 @@
 
 from celery_playground.getting_started.tasks import add
 
-add.delay(4, 4)
+if __name__ == "__main__":
+    add.delay(4, 4)
