@@ -1,10 +1,10 @@
-.. MPSTITLE documentation master file, created by
+.. celery-playground documentation master file, created by
    sphinx-quickstart on Tue Jan 24 16:52:40 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the documentation of MPSTITLE!
-===============================================
+Welcome to the documentation of celery-playground!
+==================================================
 
 .. toctree::
    :maxdepth: 2

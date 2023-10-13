@@ -18,7 +18,7 @@ RUN python3 -m venv --copies /app/venv; \
     poetry install --no-root --no-interaction --with dev
 ENV PATH /app/venv/bin:$PATH
 
-COPY MPSSRC src
+COPY celery_playground src
 COPY tests tests
 
 ENV ENV dev

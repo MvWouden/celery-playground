@@ -1,6 +1,6 @@
-# MPSREPO
+# celery-playground
 
-MPSDESC
+A Celery playground.
 
 ## Commands
 
@@ -27,7 +27,7 @@ docker compose down
 Running a command in the container:
 
 ```shell
-docker compose run MPSSRC_app <command>
+docker compose run celery_playground_app <command>
 ```
 
 ### Poetry
@@ -35,7 +35,7 @@ docker compose run MPSSRC_app <command>
 Starting a new package:
 
 ```shell
-poetry new --src MPSSRC
+poetry new --src celery_playground
 ```
 
 Installing dependencies:
@@ -53,13 +53,13 @@ poetry update  # <package1_name> <package2_name>
 Add a dependency:
 
 ```shell
-poetry add MPSSRC  # --group dev
+poetry add celery_playground  # --group dev
 ```
 
 Remove a dependency:
 
 ```shell
-poetry remove MPSSRC  # --group dev
+poetry remove celery_playground  # --group dev
 ```
 
 List available packages:
@@ -111,7 +111,7 @@ pre-commit run -a
 Build the modules:
 
 ```shell
-poetry run sphinx-apidoc -f -o docs MPSSRC
+poetry run sphinx-apidoc -f -o docs celery_playground
 ```
 
 Build the documentation files:

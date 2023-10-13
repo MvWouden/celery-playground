@@ -38,7 +38,7 @@ RUN groupadd --gid $USER_GID $USERNAME; \
 USER $USERNAME
 
 WORKDIR /app
-COPY --chown=non-priviliged-user:non-priviliged-user MPSSRC src
+COPY --chown=non-priviliged-user:non-priviliged-user celery_playground src
 
 ENV ENV prod
 ENV APP_ENV $ENV

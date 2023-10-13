@@ -1,6 +1,6 @@
 from pytest import LogCaptureFixture, raises
 
-from MPSSRC.hello_world import get_hello_world
+from celery_playground.hello_world import get_hello_world
 
 
 def test_hello_world(

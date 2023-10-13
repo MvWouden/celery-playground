@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "MPSTITLE"
+name = "celery-playground"
 version = "0.1.0"
-description = "MPSDESC"
+description = "A Celery playground."
 authors = ["Milan van Wouden <milanvanwouden@live.nl>"]
 readme = "README.md"
-packages = [{include = "MPSSRC"}]
+packages = [{include = "celery_playground"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -42,7 +42,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
 python_version = 3.11
-packages = ["MPSSRC"]
+packages = ["celery_playground"]
 check_untyped_defs = true
 disallow_untyped_defs = true
 disallow_any_unimported = true

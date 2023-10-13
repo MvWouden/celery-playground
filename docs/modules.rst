@@ -1,7 +1,7 @@
-MPSSRC
-===========
+celery_playground
+=================
 
 .. toctree::
    :maxdepth: 4
 
-   MPSSRC
+   celery_playground
