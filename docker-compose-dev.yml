@@ -1,8 +1,44 @@
 version: '3.8'
 
 services:
-  celery_playground_app:
+  celery_playground_celery_worker:
+    container_name: celery_playground_celery_worker_dev
     build:
         context: .
         dockerfile: Dockerfile-dev
-    container_name: celery_playground_app_dev
+    command: poetry run celery -A celery_playground.getting_started.tasks worker --loglevel=INFO
+    environment:
+      - CELERY_BROKER_URL=amqp://bugs:bunny@rabbitmq:5672
+    networks:
+      - celery_playground_network
+    healthcheck:
+      test: poetry run celery inspect ping -A celery_playground.getting_started.tasks.add
+      interval: 30s
+      timeout: 30s
+      start_period: 1m
+      start_interval: 5s
+      retries: 3
+    depends_on:
+      celery_playground_message_broker:
+        condition: service_healthy
+
+  celery_playground_message_broker:
+    container_name: celery_playground_message_broker_dev
+    # 3.12.6 Alpine
+    image: rabbitmq@sha256:02de6888429b4da4ea4b5032bce91e942a1c9e7c77191b97f60efe1efa07b12e
+    hostname: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=bugs
+      - RABBITMQ_DEFAULT_PASS=bunny
+    networks:
+      - celery_playground_network
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      start_period: 1m
+      start_interval: 5s
+      retries: 3
+
+networks:
+  celery_playground_network:
