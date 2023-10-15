@@ -1,12 +1,36 @@
 version: '3.8'
 
 services:
-  celery_playground_celery_worker:
-    container_name: celery_playground_celery_worker_dev
+  celery_playground_celery_worker_1:
+    container_name: celery_playground_celery_worker_1_dev
     build:
         context: .
         dockerfile: Dockerfile-dev
-    command: poetry run celery -A celery_playground.getting_started.tasks worker --loglevel=INFO
+    command: poetry run celery -A celery_playground.first_steps.tasks worker --loglevel=INFO
+    environment:
+      - CELERY_BROKER_URL=amqp://bugs:bunny@rabbitmq:5672
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    networks:
+      - celery_playground_network
+    healthcheck:
+      test: poetry run celery inspect ping -A celery_playground.first_steps.tasks.add
+      interval: 30s
+      timeout: 30s
+      start_period: 1m
+      start_interval: 5s
+      retries: 3
+    depends_on:
+      celery_playground_message_broker:
+        condition: service_healthy
+      celery_playground_results_backend:
+        condition: service_healthy
+
+  celery_playground_celery_worker_2:
+    container_name: celery_playground_celery_worker_2_dev
+    build:
+        context: .
+        dockerfile: Dockerfile-dev
+    command: poetry run celery -A celery_playground.getting_started worker --loglevel=INFO
     environment:
       - CELERY_BROKER_URL=amqp://bugs:bunny@rabbitmq:5672
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
